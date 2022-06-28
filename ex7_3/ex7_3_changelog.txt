@@ -1,0 +1,18 @@
+Program Ex7_3
+
+
+
+alpha 1: alpha release.
+
+rc1: release candidate, squashed some bugs.
+
+v1-0: Implemented LUT for AI.
+
+v1-1: Improved UI, fixed some broken UI elements.
+
+v1-2: AI logic has been redone.
+
+v2-0: UI Overhaul.
+
+
+
