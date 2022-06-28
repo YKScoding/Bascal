@@ -1,0 +1,149 @@
+Frame:
+
+
+top/header.html
+
+left/nav.html
+
+main.html
+
+Reason for dead: cannot display on phones
+
+‘*’ is for rest of the screen
+
+
+Programming flow: *Seldomly used in real world
+(usually will do UAT a lot)
+
+
+Identify problem
+
+Definition
+
+Analysis
+
+Algo design
+
+
+
+Program coding
+
+Program testing and debugging
+
+	Testing: 1. Unit test
+		     2. System/Integration Test
+		     3. User Acceptance Test
+
+Program documentation
+
+
+Assignment statement:
+
+	Data embedded cannot be easily shared with other programs.
+
+Input statement: 
+
+Volatile, data needs to be inputted each time the program is run.
+
+Solution: Storing the data in an external file.
+(still is use read, but no need use keyboard i.e. no need to input manually.)
+
+ -> program data independence.
+
+In pascal, file is treated as a logical device that receives and transmits data, like screen and keyboard
+
+Files are similar to 1D arrays without index numbers.
+
+As a result, files can only be accessed sequentially. 
+(Also in one single direction!!!)
+
+Though, data stored in files are non volatile, which is very nice.
+
+Size of data stored in files are also dynamic, which means there is no predetermined size.
+
+In pascal, there are 3 markers in a file: (also called tags)
+Bof, Eof; Beginning of file, End of file
+Eoln ; End of line
+
+In Turbo pascal, there are 3 types of file,
+Text, Typed, Standard.
+
+Text is ASCII text only.
+Also easiest to create and read.
+
+Typed is binary or non text
+
+Standard is input and output
+
+
+** usually don’t use for loop for file reading, since length of data is unknown.
+If use, not only waste process cycle, also risk read past eof.
+**runtime error!!!
+
+Use while loop for file reading.
+ :: while not eof(diskfile{file var}) do begin…
+
+Readln is like 
+:: while not eoln(df) do begin read(); end;
+readln can be used to skip eoln marker,
+Since read cannot read past eoln.
+
+
+
+**dont use text file for database lmao
+
+Since need to do this:
+For insert
+	Copy entire file to ram
+	Add record to array
+	overwrite entire array to file
+
+Usually use Insert before instead of insert after.
+
+For delete
+	Copy entire file to ram
+	Remove record from array
+	overwrite entire array to file
+
+
+Structure of a program for modifying files
+
+Input
+Insert
+Delete
+Amend
+	(autosave)
+Display
+Save
+
+
+Parallel array -> record
+
+
+
+When use insert and delete for procedure, usually use call by reference.
+When use amend, display and save, usually use call by value.
+
+
+writeln(sex:2, chi:6, eng:6, …)
+
+Append: add to end
+Insert before
+
+Programming basics: sorting, shifting, searching.
+
+To delete,
+Mark the object
+Then delete it when saving
+
+
+
+
+SEARCHING:
+Linear search/sequential search ::easy to implement
+Binary search *need sorted data!!*
+
+For searching, need search key e.g. name and date of birth
+Primary key(e.g.date) & secondary key(e.g.time/name)
+
+
