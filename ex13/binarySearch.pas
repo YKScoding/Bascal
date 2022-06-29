@@ -89,11 +89,11 @@ end; {end of search}
 
 
 
-procedure binarysrc(var pos : int64);
+procedure binarysrcv2(var pos : int64);
 var
      target : string;
      found : boolean;
-     count , bin , size : int64;
+     count , top , bottom , bin : int64;
 begin {of procedure}
      writeln;
      write('Enter name of student: ');
@@ -101,30 +101,24 @@ begin {of procedure}
           {initialization}
           found := false;
           count := 0;
-          bin := (num div 2 + 1);
-          size := bin;
+          top := num;
+          bottom := 1;
           {end of initialization}
-     while not((found) or (count > ((num div 4) + 1))) do begin
-                         writeln('comparing data ' , bin); {debug flag}
-                    count := count + 1;
-                    size := ((size div 2) - (size mod 2));
-                    if ((size = 0) or (count > num div 4)) then size := 1;
-          
-          with student[bin] do begin
-               if (nam = target) {compare key with target}
-                    then begin
-                         found := true; {found!}
-                         pos := bin;
-               end;
-               if (nam > target) or (bin > num) then 
-                    bin := bin - size;
-               if (nam < target) and not(bin > num) then 
-                    bin := bin + size;
-                    
-          end; {of with}
-     end; {of while}
+
+          while (found = false) or (bottom > top) do begin
+               count := count + 1;
+               bin := (top + bottom) div 2;
+               writeln(top:3 , bin:2 , bottom:2); {debug}
+               with student[bin] do begin
+                    if target = nam then begin found := true;
+                                         pos := bin end;{of if then}
+                    if target > nam then bottom := bin + 1;
+                    if target < nam then top := bin - 1;
+               end; {of with}
+
+          end; {of while}
      
-     writeln('Number of iterations = ' , count);
+     writeln('Number of iterations = ' , count); {debug}
 end; {end of binarysrc}
 
 
@@ -170,14 +164,13 @@ end; {of checkorder}
 
 
 begin {of main program}
-     randomize;
      bin := true; {initialization}
      if (FileExists('exam.txt'))
           then begin 
                inputdata;
                checkorder(bin);
                          if bin = true then
-                              binarysrc(pos)
+                              binarysrcv2(pos)
                          else begin
                                    writeln('Data is not in order, press enter to continue search with linear search.');
                                    readln;
