@@ -104,7 +104,7 @@ begin {of procedure}
           bin := (num div 2 + 1);
           size := bin;
           {end of initialization}
-     while not((found) or (count > (num div 2))) do begin
+     while not((found) or (count > ((num div 4) + 1))) do begin
                          writeln('comparing data ' , bin); {debug flag}
                     count := count + 1;
                     size := ((size div 2) - (size mod 2));
@@ -189,4 +189,3 @@ begin {of main program}
 
      
 end. {end of main program}
-
