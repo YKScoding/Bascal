@@ -144,6 +144,7 @@ begin {of procedure}
      if (pos = 0) {0 means not found}
           then writeln('Record not found')
           else with student[pos] do begin
+               writeln;
                writeln('Record found!');
                writeln('Student name = ', nam);
                writeln('Exam mark = ', mark)
