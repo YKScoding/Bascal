@@ -65,16 +65,22 @@ var
      targetq : string;
      foundq : boolean;
      countq : int64;
+     tcone : char;
 begin {of procedure}
      writeln;
-     write('Enter name of student: ');
-     readln(targetq);
+     repeat
+          write('Enter name of student in capital letters: ');
+          readln(targetq);
+          tcone := targetq[1];
+          if ord(tcone) > 90 
+               then writeln('Please enter in capital letters.');
+     until ord(tcone) <= 90;
           {initialization}
           foundq := false;
           countq := 1;
           {end of initialization}
      while not((foundq) or (countq = num)) do begin
-          writeln(student[countq].nam);
+          {writeln(student[countq].nam);} {debug flag}
           countq := countq + 1;
                if (student[countq].nam = targetq) {compare key with target}
                     then foundq := true; {found!}
@@ -191,9 +197,6 @@ procedure sort; {sort for ascending}
 var 
      i , n : int64;
 begin
-     {initialization}
-
-
      for n := 1 to num do 
           for i := 1 to (num + 1) do begin
                     if student[i].nam > student[i + 1].nam
@@ -215,6 +218,7 @@ end; {of sort}
 
 begin {of main program}
      bin := true; {initialization}
+     
      if (FileExists('exam.txt'))
           then begin 
                inputdata;
