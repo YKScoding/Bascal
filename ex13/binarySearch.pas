@@ -3,7 +3,7 @@
 program binarySearchV2;
 
 uses
-     SysUtils , Crt;
+     SysUtils , Crt , UShellSort;
 const
      num = 11; {array size of student...}
 type
@@ -92,32 +92,40 @@ end; {end of search}
 procedure binarysrcv2(var pos : int64);
 var
      target : string;
+     tcone : char;
      found : boolean;
      count , top , bottom , bin : int64;
 begin {of procedure}
      writeln;
-     write('Enter name of student: ');
-     readln(target);
+     repeat
+          write('Enter name of student in capital letters: ');
+          readln(target);
+          tcone := target[1];
+          if ord(tcone) > 90 
+               then writeln('Please enter in capital letters.');
+     until ord(tcone) <= 90;
+     
           {initialization}
           found := false;
           count := 0;
           top := num;
           bottom := 1;
+          writeln('initialized!');
           {end of initialization}
-
-          while (found = false) or (bottom > top) do begin
+          
+          while (found = false) and not(bottom > top) do begin
                count := count + 1;
                bin := (top + bottom) div 2;
                writeln(top:3 , bin:2 , bottom:2); {debug}
                with student[bin] do begin
                     if target = nam then begin found := true;
-                                         pos := bin end;{of if then}
+                                               pos := bin end;{of if then}
                     if target > nam then bottom := bin + 1;
                     if target < nam then top := bin - 1;
                end; {of with}
-
+               
           end; {of while}
-     
+          
      writeln('Number of iterations = ' , count); {debug}
 end; {end of binarysrc}
 
@@ -158,6 +166,27 @@ begin {of checkorder}
      end; {of while loop}
 
 end; {of checkorder}
+
+
+
+
+
+{procedure sort;
+var 
+     i : int64;
+     red , buffer : string;
+begin
+     i := 1 
+
+
+
+     for i to num do 
+          with student[i] do begin
+               
+          end;
+     end;
+     writeln('sorted!');
+     end; }
 
 
 
