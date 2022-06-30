@@ -3,7 +3,7 @@
 program binarySearchV2;
 
 uses
-     SysUtils , Crt , UShellSort;
+     SysUtils , Crt ;
 const
      num = 11; {array size of student...}
 type
@@ -16,7 +16,7 @@ var
      student : array[1..num] of examtype;
      pos : int64;
      bin : boolean;
- 
+     LS : char;
 
 
 
@@ -27,7 +27,7 @@ var
 begin
      for i := 1 to num do begin
           with student[i] do
-               writeln(i ,' ' , nam , ' ':10 - length(nam) , mark)
+               writeln(i:3 ,'  ' , nam , ' ':10 - length(nam) , mark)
      end; {of for loop}
 end; {of showarray}
 
@@ -110,13 +110,12 @@ begin {of procedure}
           count := 0;
           top := num;
           bottom := 1;
-          writeln('initialized!');
           {end of initialization}
           
           while (found = false) and not(bottom > top) do begin
                count := count + 1;
                bin := (top + bottom) div 2;
-               writeln(top:3 , bin:2 , bottom:2); {debug}
+                    {writeln(top:3 , bin:2 , bottom:2);} {debug flag}
                with student[bin] do begin
                     if target = nam then begin found := true;
                                                pos := bin end;{of if then}
@@ -171,22 +170,44 @@ end; {of checkorder}
 
 
 
-{procedure sort;
-var 
-     i : int64;
-     red , buffer : string;
+procedure swap(i : int64; iB : int64);
+var
+     buffer : string;
 begin
-     i := 1 
-
-
-
-     for i to num do 
-          with student[i] do begin
+               {temporary fix, will probably end up permanant...}
+                    if not(iB = 12) then begin
                
-          end;
-     end;
-     writeln('sorted!');
-     end; }
+               
+               
+          buffer := student[iB].nam;
+          student[iB].nam := student[i].nam;
+          student[i].nam := buffer;
+                    end;{of temporary if}
+end; {of swap}
+
+
+
+procedure sort; {sort for ascending}
+var 
+     i , n : int64;
+begin
+     {initialization}
+
+
+     for n := 1 to num do 
+          for i := 1 to (num + 1) do begin
+                    if student[i].nam > student[i + 1].nam
+                         then begin
+                              swap(i,i + 1);
+                              {writeln(i)} {debug flag}
+                         end;{of if then}
+          end; {of for loop}
+     writeln;
+     writeln('Sorted!');
+     showarray;
+     binarysrcv2(pos);
+end; {of sort}
+
 
 
 
@@ -201,9 +222,16 @@ begin {of main program}
                          if bin = true then
                               binarysrcv2(pos)
                          else begin
-                                   writeln('Data is not in order, press enter to continue search with linear search.');
-                                   readln;
-                                   seqsrc(pos);
+                                   writeln;
+                                   writeln('Data is not in ascending order,');
+                                   writeln('Enter L to continue search with linear search.');
+                                   writeln('Enter S to sort the unsorted file and search with binary search.');
+                                   readln(LS);
+                                   case LS of
+                                        'S' : sort;
+                                        'L' : seqsrc(pos);
+                                   else writeln('invalid input, ending program...');
+                                   end;{of case}
                               end; {of if then}
                printres(pos);
                end {of if then}
