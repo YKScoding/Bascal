@@ -1,6 +1,6 @@
 
 
-program binarySearchV1;
+program binarySearchV2;
 
 uses
      SysUtils , Crt;
