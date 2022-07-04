@@ -202,7 +202,7 @@ end; {of swap}
 
 
 
-procedure sort; {sort for ascending}
+procedure sort; {sort for ascending} {using bubblesort algorithm}
 var 
      i , n : int64;
 begin
