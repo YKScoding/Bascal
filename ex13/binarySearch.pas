@@ -180,15 +180,23 @@ end; {of checkorder}
 procedure swap(i : int64; iB : int64);
 var
      buffer : string;
+     bufferint : int64; 
 begin
                {temporary fix, will probably end up permanant...}
                     if not(iB = 12) then begin
-               
-               
-               
+                    
+                    
+                    
           buffer := student[iB].nam;
           student[iB].nam := student[i].nam;
           student[i].nam := buffer;
+          
+          bufferint := student[iB].mark;
+          student[iB].mark := student[i].mark;
+          student[i].mark := bufferint;
+                    
+                    
+                    
                     end;{of temporary if}
 end; {of swap}
 
@@ -198,12 +206,14 @@ procedure sort; {sort for ascending}
 var 
      i , n : int64;
 begin
-     for n := 1 to num do 
-          for i := 1 to (num + 1) do begin
+     for n := 1 to (num - 1) do 
+          for i := 1 to (num - n) do begin
                     if student[i].nam > student[i + 1].nam
                          then begin
+                         
                               swap(i,i + 1);
                               {writeln(i)} {debug flag}
+                              
                          end;{of if then}
           end; {of for loop}
      writeln;
