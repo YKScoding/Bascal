@@ -202,7 +202,7 @@ end; {of swap}
 
 
 
-procedure bubsort; {sort for ascending} {using bubblesort algorithm}
+procedure bubsort; {sort for ascending, using bubblesort algorithm}
 var 
      i , n : int64;
      s : boolean;
@@ -226,7 +226,34 @@ begin
      writeln('Sorted!');
      showarray;
      binarysrcv2(pos);
-end; {of sort}
+end; {of bubsort}
+
+
+
+
+
+procedure compare(a , b : int64; var c : boolean);
+begin
+     if a > b then c := true else c := false
+end;{of compare}
+
+
+
+
+procedure insort; {sorting for ascending, using insertion sort algorithm.}
+var
+     pass : int64; {number of passes}
+     pos : int64;
+     tempmark : array[1..2] of int64;
+     tempname : array[1..2] of string;
+     comp : boolean;
+begin {of insort}
+     for pos := 2 to num do
+          tempname[1] := student[pos].nam;
+          
+
+
+end; {of insort}
 
 
 
@@ -252,6 +279,7 @@ begin {of main program}
                                    case LS of
                                         'S' : bubsort;
                                         'L' : seqsrc(pos);
+                                        'I' : insort;
                                    else writeln('invalid input, ending program...');
                                    end;{of case}
                               end; {of if then}
