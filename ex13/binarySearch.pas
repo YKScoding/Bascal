@@ -202,20 +202,26 @@ end; {of swap}
 
 
 
-procedure sort; {sort for ascending} {using bubblesort algorithm}
+procedure bubsort; {sort for ascending} {using bubblesort algorithm}
 var 
      i , n : int64;
+     s : boolean;
 begin
-     for n := 1 to (num - 1) do 
+     n := 1;
+     repeat 
+          s := false;
           for i := 1 to (num - n) do begin
                     if student[i].nam > student[i + 1].nam
                          then begin
                          
                               swap(i,i + 1);
+                              s := true;
                               {writeln(i)} {debug flag}
                               
                          end;{of if then}
           end; {of for loop}
+          n := n + 1;
+     until (n > num - 1) or not s;
      writeln;
      writeln('Sorted!');
      showarray;
@@ -240,10 +246,11 @@ begin {of main program}
                                    writeln;
                                    writeln('Data is not in ascending order,');
                                    writeln('Enter L to continue search with linear search.');
-                                   writeln('Enter S to sort the unsorted file and search with binary search.');
+                                   writeln('Enter S to do bubble sort and search with binary search.');
+                                   writeln('Enter I to do insertion sorting and search with binary search. ');
                                    readln(LS);
                                    case LS of
-                                        'S' : sort;
+                                        'S' : bubsort;
                                         'L' : seqsrc(pos);
                                    else writeln('invalid input, ending program...');
                                    end;{of case}
