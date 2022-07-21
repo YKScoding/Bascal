@@ -1,6 +1,6 @@
 
 
-program binarySearchV2;
+program binarySearchV3;
 
 uses
      SysUtils , Crt ;
@@ -254,7 +254,7 @@ begin {of insort}
           tempmark[pos] := student[pos].mark;
           pass := pos - 1;
      end; {of for loop}
-     while (pos > 0 and student[pass].nam > key[1]) do begin
+     while (pos > 0) and (student[pass].nam > key[1]) do begin
           student[pass + 1].nam := student[pass].nam;
           student[pass + 1].mark := student[pass].mark;
           pass := pass - 1;
