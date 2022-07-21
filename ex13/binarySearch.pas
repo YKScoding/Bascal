@@ -225,6 +225,7 @@ begin
           end; {of for loop}
           n := n + 1;
      until (n > num - 1) or not s;
+     clrscr;
      writeln;
      writeln('Sorted!');
      showarray;
@@ -262,12 +263,13 @@ begin {of insort}
                i := i - 1;
                student[i + 1].nam := keynam;
                student[i + 1].mark := keymark;
+                    clrscr;
+                    writeln('Sorting...');
+                    showarray;
+                    sleep(500);
                          {writeln('key: ' , keynam:5 , ' ' , keymark);}
           end; {of while loop}
-               clrscr;
-               writeln('Sorting...');
-               showarray;
-               sleep(500);
+
      end; {of for loop}
      clrscr;
      writeln;
