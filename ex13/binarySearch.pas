@@ -262,13 +262,14 @@ begin {of insort}
                i := i - 1;
                student[i + 1].nam := keynam;
                student[i + 1].mark := keymark;
+                         {writeln('key: ' , keynam:5 , ' ' , keymark);}
+          end; {of while loop}
                clrscr;
                writeln('Sorting...');
                showarray;
                sleep(500);
-                         {writeln('key: ' , keynam:5 , ' ' , keymark);}
-          end; {of while loop}
      end; {of for loop}
+     clrscr;
      writeln;
      writeln('Sorted!');
      showarray;
@@ -293,11 +294,11 @@ begin {of main program}
                                    writeln;
                                    writeln('Data is not in ascending order,');
                                    writeln('Enter L to continue search with linear search.');
-                                   writeln('Enter S to do bubble sort and search with binary search.');
+                                   writeln('Enter B to do bubble sort and search with binary search.');
                                    writeln('Enter I to do insertion sorting and search with binary search. ');
                                    readln(LS);
                                    case LS of
-                                        'S' : bubsort;
+                                        'B' : bubsort;
                                         'L' : seqsrc(pos);
                                         'I' : insort;
                                    else writeln('invalid input, ending program...');
