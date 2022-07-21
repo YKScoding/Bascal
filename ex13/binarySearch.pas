@@ -244,20 +244,22 @@ procedure insort; {sorting for ascending, using insertion sort algorithm.}
 var
      pass : int64; {number of passes}
      pos : int64;
-     key : string; {unknown}
-     tempmark : array[1..2] of int64;
-     tempname : array[1..2] of string;
+     key : array[1..1] of string; {unknown}
+     tempmark : array[1..num] of int64;
+     tempname : array[1..num] of string;
 begin {of insort}
      for pos := 2 to num do begin
-          key := student[pos].nam;
+          key[1] := student[pos].nam;
           tempname[pos] := student[pos].nam;
           tempmark[pos] := student[pos].mark;
           pass := pos - 1;
-     end;{of for loop}
-     while pos > 0 and student[pass].nam > key do begin
+     end; {of for loop}
+     while (pos > 0 and student[pass].nam > key[1]) do begin
           student[pass + 1].nam := student[pass].nam;
           student[pass + 1].mark := student[pass].mark;
-          
+          pass := pass - 1;
+          student[pass + 1].nam := key[1];
+     end; {of while loop}
 end; {of insort}
 
 
@@ -290,7 +292,7 @@ begin {of main program}
                               end; {of if then}
                printres(pos);
                end {of if then}
-          else writeln('document not found! Ending program.')
+          else writeln('document not found! Ending program.');
 
      
 end. {end of main program}
