@@ -1,5 +1,4 @@
 
-
 program binarySearchV3;
 
 uses
@@ -219,6 +218,10 @@ begin
                               {writeln(i)} {debug flag}
                               
                          end;{of if then}
+               clrscr;
+               writeln('Sorting...');
+               showarray;
+               sleep(500);
           end; {of for loop}
           n := n + 1;
      until (n > num - 1) or not s;
@@ -242,24 +245,34 @@ end;{of compare}
 
 procedure insort; {sorting for ascending, using insertion sort algorithm.}
 var
-     pass : int64; {number of passes}
-     pos : int64;
-     key : array[1..1] of string; {unknown}
-     tempmark : array[1..num] of int64;
-     tempname : array[1..num] of string;
+     i : int64; {number of passes}
+     j : int64;
+     keynam : string; {temp name array}
+     keymark : int64;
 begin {of insort}
-     for pos := 2 to num do begin
-          key[1] := student[pos].nam;
-          tempname[pos] := student[pos].nam;
-          tempmark[pos] := student[pos].mark;
-          pass := pos - 1;
+     for j := 2 to num do begin
+          keynam := student[j].nam;
+          keymark := student[j].mark;
+          i := j - 1;
+                         {writeln(i:3 , ' ' , j:3);}
+     
+          while (i > 0) and (student[i].nam > keynam) do begin
+               student[i + 1].nam := student[i].nam;
+               student[i + 1].mark := student[i].mark;
+               i := i - 1;
+               student[i + 1].nam := keynam;
+               student[i + 1].mark := keymark;
+               clrscr;
+               writeln('Sorting...');
+               showarray;
+               sleep(500);
+                         {writeln('key: ' , keynam:5 , ' ' , keymark);}
+          end; {of while loop}
      end; {of for loop}
-     while (pos > 0) and (student[pass].nam > key[1]) do begin
-          student[pass + 1].nam := student[pass].nam;
-          student[pass + 1].mark := student[pass].mark;
-          pass := pass - 1;
-          student[pass + 1].nam := key[1];
-     end; {of while loop}
+     writeln;
+     writeln('Sorted!');
+     showarray;
+     binarysrcv2(pos);
 end; {of insort}
 
 
